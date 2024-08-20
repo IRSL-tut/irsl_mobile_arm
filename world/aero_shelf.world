@@ -21,11 +21,13 @@
     </gui>
 
     <include>
+      <name>fcsc_shelf0</name>
       <pose frame=''>-1.9 -0.97 0  0 0 0</pose>
       <uri>model://fcsc_shelf</uri>
     </include>
 
     <include>
+      <name>fcsc_shelf1</name>
       <pose frame=''>-1.9 0 0   0 0 0</pose>
       <uri>model://fcsc_shelf2</uri>
     </include>

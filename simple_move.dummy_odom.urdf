@@ -22,8 +22,8 @@
       <geometry>
         <cylinder length="0.01" radius="0.02"/>
       </geometry>
-      <material name="Green">
-        <color rgba="0.0 1.0 0.0 1.0"/>
+      <material name="Red">
+        <color rgba="1.0 0.0 0.0 1.0"/>
       </material>
     </visual>
     <collision>
@@ -91,10 +91,10 @@
     <!--plugin filename="libgazebo_ros_planar_force_move.so" name="cmd_vel_controller"-->
     <plugin filename="libgazebo_ros_planar_move.so" name="cmd_vel_controller">
       <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
+      <odometryTopic>gz_odom</odometryTopic>
+      <odometryFrame>gz_odom</odometryFrame>
       <odometryRate>40.0</odometryRate>
-      <robotBaseFrame>base_link</robotBaseFrame>
+      <robotBaseFrame>gz_base_link</robotBaseFrame>
       <useForceFeedback>true</useForceFeedback>
       <appliedForceLink>base_link</appliedForceLink>
       <forceGainX>24000</forceGainX>

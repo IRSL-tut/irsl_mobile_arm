@@ -8,6 +8,8 @@
   <arg name="WORLD_FILE" default="/tmp/simple_move/world/aero_shelf.world"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="debug" default="false"/>
+  <arg name="use_dummy_odom" default="false" />
+  <arg name="making_map" default="false" />
 
   <env name="GAZEBO_MODEL_PATH" value="/tmp/simple_move/gazebo_models" />
 
@@ -23,7 +25,14 @@
 
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-         textfile="/tmp/simple_move/simple_move.urdf" />
+         textfile="/tmp/simple_move/simple_move.urdf"
+         unless="$(arg use_dummy_odom)" />
+  <param name="robot_description"
+         textfile="/tmp/simple_move/simple_move.dummy_odom.urdf"
+         if="$(arg use_dummy_odom)" />
+
+  <!--node name="dummy_odom" pkg="gazebo_ros" type="/tmp/simple_move/dummy_odom.py"
+        if="$(arg use_dummy_odom)" /-->
 
   <node name="simple_move_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
@@ -32,8 +41,13 @@
         respawn="false" output="screen"
         args="-urdf -model simple_movee -param robot_description"/>
 
-  <include file="/tmp/simple_move/static_map_navigation.launch">
+  <include file="/tmp/simple_move/static_map_navigation.launch"
+           unless="$(arg making_map)">
     <arg name="map_file" value="/tmp/simple_move/map/map.yaml" />
   </include>
 
+  <group if="$(arg making_map)" >
+    <include file="gmapping.launch" />
+    <include file="move_base.launch" />
+  </group>
 </launch>
