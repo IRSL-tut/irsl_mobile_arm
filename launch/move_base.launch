@@ -25,7 +25,7 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
 -->
 <launch>
   <arg name="map_file"
-       default="/tmp/simple_move/map/map.yaml"/>
+       default="$(find simple_move)/map/map.yaml"/>
   <arg name="no_static_map" default="false"/>
 
    <!-- global planner type -->
@@ -44,13 +44,13 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
 
   <!-- Moving Parameters -->
   <arg name="base_local_planner_param"
-       default="/tmp/simple_move/config/TebLocalPlanner.yaml"/>
+       default="$(find simple_move)/config/TebLocalPlanner.yaml"/>
   <!--arg name="base_local_planner_param"
-       default="/tmp/simple_move/config/EBandPlanner.yaml"/-->
+       default="$(find simple_move)/config/EBandPlanner.yaml"/-->
   <!--arg name="base_local_planner_param"
-       default="/tmp/simple_move/config/DWAPlanner.yaml"/-->
+       default="$(find simple_move)/config/DWAPlanner.yaml"/-->
   <!--arg name="base_local_planner_param"
-       default="/tmp/simple_move/config/TrajectoryPlanner.yaml"/-->
+       default="$(find simple_move)/config/TrajectoryPlanner.yaml"/-->
 
   <node pkg="move_base" type="move_base" name="move_base"
         respawn="false" output="screen">
@@ -67,27 +67,27 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
 
     <!-- observation sources located in costmap_common.yaml -->
     <rosparam
-        file="/tmp/simple_move/config/costmap_common.yaml"
+        file="$(find simple_move)/config/costmap_common.yaml"
         command="load" ns="global_costmap" />
     <rosparam
-        file="/tmp/simple_move/config/costmap_common.yaml"
+        file="$(find simple_move)/config/costmap_common.yaml"
         command="load" ns="local_costmap" />
 
     <!-- local costmap, needs size -->
     <rosparam
-        file="/tmp/simple_move/config/costmap_local.yaml"
+        file="$(find simple_move)/config/costmap_local.yaml"
         command="load" ns="local_costmap" />
     <param name="local_costmap/width"  value="6.0"/>
     <param name="local_costmap/height" value="6.0"/>
 
     <!-- static global costmap, static map provides size -->
     <rosparam
-        file="/tmp/simple_move/config/costmap_global_static.yaml"
+        file="$(find simple_move)/config/costmap_global_static.yaml"
         command="load" ns="global_costmap" unless="$(arg no_static_map)"/>
 
     <!-- global costmap with laser, for odom_navigation_demo -->
     <rosparam
-        file="/tmp/simple_move/config/costmap_global_laser.yaml"
+        file="$(find simple_move)/config/costmap_global_laser.yaml"
         command="load" ns="global_costmap" if="$(arg no_static_map)"/>
 
     <param name="global_costmap/width"  value="10.0" if="$(arg no_static_map)"/>

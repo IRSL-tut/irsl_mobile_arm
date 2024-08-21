@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Run the map server -->
-  <arg name="map_file"              default="/tmp/simple_move/map/map.yaml"/>
+  <arg name="map_file"              default="$(find simple_move)/map/map.yaml"/>
   <arg name="map_localization_file" default="$(arg map_file)"/>
 
   <node name="map_localization_server" pkg="map_server" type="map_server" args="$(arg map_localization_file)" >
@@ -10,10 +10,10 @@
   <node name="map_planning_server"     pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!--- Run AMCL -->
-  <include file="amcl.launch" />
+  <include file="$(find simple_move)/launch/amcl.launch" />
 
   <!--- Run Move Base -->
-  <include file="move_base.launch">
+  <include file="$(find simple_move)/launch/move_base.launch">
     <arg name="map_file" value="$(arg map_file)" />
   </include>
 </launch>

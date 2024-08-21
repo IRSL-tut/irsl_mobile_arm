@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>simple_move</name>
+  <version>0.0.0</version>
+  <description>sample</description>
+  <maintainer email="faculty@irsl.eiiris.tut.ac.jp"> IRSL at Toyohashi Tech </maintainer>
+  <license>MIT</license>
+</package>

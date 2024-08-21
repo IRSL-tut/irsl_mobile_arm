@@ -1,11 +1,13 @@
+#!/usr/bin/env python3
+
 import rospy
 import tf
 import math
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
 
-_g_br_ = tf.TransformBroadcaster()
-_g_pub_ = rospy.Publisher('odom', Odometry)
+_g_br_  = None
+_g_pub_ = None
 
 _g_x = 0.0
 _g_y = 0.0
@@ -92,7 +94,10 @@ def callback_twist(msg):
 if __name__ == '__main__':
     rospy.init_node('dummy_odom_publisher')
 
+    _g_br_  = tf.TransformBroadcaster()
+    _g_pub_ = rospy.Publisher('odom', Odometry)
+
     sub = rospy.Subscriber('cmd_vel', Twist, callback_twist)
-    tm  = rospy.Timer(rospy.Duration(0.04), callback)
+    tm  = rospy.Timer(rospy.Duration(0.04), callback) ## 25Hz(0.04 sec)
 
     rospy.spin()

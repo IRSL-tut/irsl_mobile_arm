@@ -4,23 +4,22 @@ Simple move_base sample
 
 ## 実行方法
 
-このディレクトリを /tmp/simple_move に置く (シンボリックリンクでもよい)
+export ROS_PACKAGE_PATH=$(pwd)/..:$ROS_PACKAGE_PATH
 
 ```bash
-cd /tmp/simple_move
-roslaunch run_gazebo.launch ## gazeboのlaunch
+roslaunch simple_move run_base.launch run_gazebo:=true ## gazeboのlaunch
 rosrun rviz rviz -d simple_move.rviz ##
 ```
 
 - いい感じのところに 2D pose estimate (rviz上)
 - 適度なところへ goal を設定 (rviz上)
 
-### dummy odom
+### ダミーのオドメトリの出力 / Dummy odometry
 
 twistを積算するダミーのオドメトリを使用する
 
 ```
-roslaunch run_gazebo.launch use_dummy_odom:=true ## gazeboのlaunch, ダミーのオドメトリ
+roslaunch simple_move run_base.launch run_gazebo:=true use_dummy_odom:=true ## gazeboのlaunch, ダミーのオドメトリ
 ./dummy_odom.py
 ```
 
@@ -29,7 +28,7 @@ roslaunch run_gazebo.launch use_dummy_odom:=true ## gazeboのlaunch, ダミー�
 マップを作る
 
 ```
-roslaunch run_gazebo.launch making_map:=true ## マップを作る
+roslaunch simple_move run_base.launch run_gazebo:=true making_map:=true ## gazeboのlaunch, マップを作る
 ```
 
 cmd_velを出力するもの(twist_joyやtwist_keyboard)でロボットを動かす。
@@ -38,6 +37,8 @@ cmd_velを出力するもの(twist_joyやtwist_keyboard)でロボットを動か
 ```
 rosrun map_server map_saver -f map
 ```
+
+### Real Robot
 
 ## インストールが必要なもの
 
@@ -65,3 +66,7 @@ xacro base.urdf.xacro > simple_move.urdf ## aero_ros_pkg 直下で
 
 libgazebo_force_move の所を修正
 
+
+## OLD information
+
+このディレクトリを /tmp/simple_move に置く (シンボリックリンクでもよい)
