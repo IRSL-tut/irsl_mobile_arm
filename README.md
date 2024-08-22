@@ -20,7 +20,6 @@ twistを積算するダミーのオドメトリを使用する
 
 ```
 roslaunch simple_move run_base.launch run_gazebo:=true use_dummy_odom:=true ## gazeboのlaunch, ダミーのオドメトリ
-./dummy_odom.py
 ```
 
 ### Making map
