@@ -1,0 +1,8 @@
+<launch>
+    <arg name="joy_dev"     default="/dev/input/js0" />
+    <arg name="joy_config"  default="joy-holonomic" />
+    <include file="$(find teleop_twist_joy)/launch/teleop.launch">
+        <arg name="joy_config"  value="$(arg joy_config)"/>
+        <arg name="joy_dev"     value="$(arg joy_dev)"/>
+    </include>
+</launch>
