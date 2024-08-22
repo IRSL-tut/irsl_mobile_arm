@@ -39,6 +39,17 @@ rosrun map_server map_saver -f map
 
 ### Real Robot
 
+マップを作る
+
+- ターミナル1
+    ```
+    roslaunch simple_mode urg_node.launch
+    ```
+- ターミナル2
+    ```
+    roslaunch simple_move run_base.launch run_gazebo:=false making_map:=true use_dummy_odom:=true
+    ```
+
 ## インストールが必要なもの
 
 他も必要かもしれない
