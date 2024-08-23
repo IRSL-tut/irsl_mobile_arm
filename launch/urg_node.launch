@@ -1,7 +1,9 @@
 <launch>
     <arg name="ip_address"    default="192.168.0.10" />
-    <arg name="angle_min"     default="-2.35619449019" />
-    <arg name="angle_max"     default="2.35619449019" />
+    <!-- <arg name="angle_min"     default="-2.35619449019" />
+    <arg name="angle_max"     default="2.35619449019" /> -->
+    <arg name="angle_min"     default="-1.57" />
+    <arg name="angle_max"     default="1.57" />
     <arg name="frame_id"      default="base_laser_link" />
     <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
         <param name="ip_address" value="$(arg ip_address)"/>
