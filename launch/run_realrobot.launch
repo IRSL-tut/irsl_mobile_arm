@@ -1,6 +1,7 @@
 <launch>
     <arg name="making_map"      default="false" />
     <arg name="use_joy"         default="false" />
+    <arg name="use_usbcam"         default="true" />
     
     <include file="$(find simple_move)/launch/run_base.launch">
         <arg name="run_gazebo"  value="false"/>
@@ -16,5 +17,9 @@
     <group if="$(arg use_joy)">
         <include file="$(find simple_move)/launch/joy.launch" >
         </include>
+    </group>
+
+    <group if="$(arg use_usbcam)">
+        <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" />
     </group>
 </launch>
