@@ -46,7 +46,7 @@
   <joint name="fixed_main_to_baselaser_link" type="fixed">
     <parent link="main"/>
     <child link="base_laser_link"/>
-    <origin rpy="0 0 0" xyz="0.2 0.0 0.05"/>
+    <origin rpy="0 0 0" xyz="0.2 0.0 0.15"/>
   </joint>
   <!-- hokuyo -->
   <gazebo reference="base_laser_link">
