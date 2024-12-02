@@ -3,12 +3,21 @@
 # ri.currentCoordsOnMap
 # ri.move_position(coordinates([1.0, 0, 0])) ## relative move
 # ri.move_on_map(coordinates([0.5, 0.5, 0])) ## absolute coords on map
+# ri.currentCoordsOnOdom
+# ri.move_trajectory([ (coordinates.init2D(0., 0., 0.), 5.0) ])
+# ri.move_trajectory([ (coordinates.init2D(1.0, 0, PI), 5.0), (coordinates.init2D(1.0, 1.0, PI), 5.0) ])
 #
+#coodinate
 mobile_base:
   type: geometry_msgs/Twist
   topic: /cmd_vel
   baselink: Root
   base_frame: base_link
+  ##
   map_frame: map
+  move_base_action: move_base
+  ##
+  odom_frame: odom
+  odom_trajectory_action: omni_base_controller/follow_joint_trajectory
 
 devices: []
