@@ -11,6 +11,7 @@
   <arg name="debug"          default="false"/>
   <arg name="use_dummy_odom" default="false" />
   <arg name="making_map"     default="false" />
+  <arg name="rviz"           default="true" />
 
   <env name="GAZEBO_MODEL_PATH" value="$(find simple_move)/gazebo_models" />
 
@@ -41,8 +42,10 @@
         args="-urdf -model simple_movee -param robot_description"
         if="$(arg run_gazebo)" />
 
-  <node name="dummy_odom_publisher" pkg="simple_move" type="dummy_odom_node.py"
-        if="$(arg use_dummy_odom)" />
+  <group if="$(arg use_dummy_odom)">
+    <node name="dummy_odom_publisher" pkg="simple_move" type="dummy_odom_node.py"/>
+    <node name="omni_base_controller" pkg="simple_move" type="odom_trajectory_to_twist_server.py"/>
+  </group>
 
   <include file="$(find simple_move)/launch/static_map_navigation.launch"
            unless="$(arg making_map)">
@@ -53,4 +56,8 @@
     <include file="$(find simple_move)/launch/gmapping.launch" />
     <include file="$(find simple_move)/launch/move_base.launch" />
   </group>
+
+  <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find simple_move)/simple_move.rviz"
+        if="$(arg rviz)" />
 </launch>
