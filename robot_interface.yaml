@@ -1,11 +1,11 @@
 #
-# ri = RobotInterface('robotinterface.yaml')
+# ri = RobotInterface('robot_interface.yaml')
 # ri.currentCoordsOnMap
 # ri.move_position(coordinates([1.0, 0, 0])) ## relative move
 # ri.move_on_map(coordinates([0.5, 0.5, 0])) ## absolute coords on map
 # ri.currentCoordsOnOdom
 # ri.move_trajectory([ (coordinates.init2D(0., 0., 0.), 5.0) ])
-# ri.move_trajectory([ (coordinates.init2D(1.0, 0, PI), 5.0), (coordinates.init2D(1.0, 1.0, PI), 5.0) ])
+# ri.move_trajectory([ (coordinates.init2D(1.0, 0, PI), 10.0), (coordinates.init2D(1.0, 1.0, PI), 20.0) ])
 #
 #coodinate
 mobile_base:
