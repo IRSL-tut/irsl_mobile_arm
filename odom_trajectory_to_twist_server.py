@@ -97,7 +97,7 @@ class OdomTrajectoryAction(object):
         absolute_ = True
         if self._current_odom is None:
             absolute_ = False
-            rospy.loginfo('got relative')
+            rospy.logwarn('do not receive odom')
         else:
             odom_ = self._current_odom
             cds = coordinates([odom_.pose.pose.position.x, odom_.pose.pose.position.y, odom_.pose.pose.position.z],
@@ -105,7 +105,6 @@ class OdomTrajectoryAction(object):
             odom_x = cds.pos[0]
             odom_y = cds.pos[1]
             odom_t = cds.RPY[2]
-            rospy.loginfo('got absolute: {} {} {}'.format(odom_x, odom_y, odom_t))
 
         jnames_ = goal.trajectory.joint_names
         points_ = goal.trajectory.points
@@ -159,9 +158,12 @@ class OdomTrajectoryAction(object):
             xx_ = newxx.pop(0)
             yy_ = newyy.pop(0)
             zz_ = newzz.pop(0)
-            ## TODO :::: velocity should be relative
-            vx = (xx_ - prev_xx)*self._rate
-            vy = (yy_ - prev_yy)*self._rate
+            wvx = (xx_ - prev_xx)*self._rate ## world
+            wvy = (yy_ - prev_yy)*self._rate ## world
+            sz = math.sin(prev_zz)
+            cz = math.cos(prev_zz)
+            vx =   wvx * cz + wvy  * sz
+            vy = - wvx * sz + wvy  * cz
             vz = (zz_ - prev_zz)*self._rate
             #
             msg = Twist(linear=Vector3(x=vx, y=vy), angular=Vector3(z=vz))

@@ -82,9 +82,12 @@ def callback_twist(msg):
         #
         cs = math.cos(_g_th)
         ss = math.sin(_g_th)
-        _g_x  += tm * ( cs * msg.linear.x - ss * msg.linear.y )
-        _g_y  += tm * ( ss * msg.linear.x + cs * msg.linear.y )
-        _g_th += tm * msg.angular.z
+        #_g_x  += tm * ( cs * msg.linear.x - ss * msg.linear.y )
+        #_g_y  += tm * ( ss * msg.linear.x + cs * msg.linear.y )
+        #_g_th += tm * msg.angular.z
+        _g_x  += tm * ( cs * _prev_vx - ss * _prev_vy )
+        _g_y  += tm * ( ss * _prev_vx + cs * _prev_vy )
+        _g_th += tm * _prev_vth
 
         _prev_vx  = msg.linear.x
         _prev_vy  = msg.linear.y
