@@ -1,0 +1,178 @@
+format: ChoreonoidBody
+format_version: 2.0
+angle_unit: degree
+name: "Simple"
+root_link: "base_link"
+links: 
+  - 
+    name: "base_link"
+    joint_name: base_link
+    joint_type: free
+    mass: 0.001
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [ 
+      1e-09, 0, 0, 
+      0, 1e-09, 0, 
+      0, 0, 1e-09 ]
+  - 
+    name: "main"
+    elements: 
+      - 
+        type: Visual
+        elements: 
+          - 
+            type: Transform
+            elements: 
+              - 
+                type: Transform
+                rotation: [ 1, 0, 0, 90 ]
+                elements: 
+                  - 
+                    type: Shape
+                    appearance: 
+                      material: 
+                        diffuse: [ 0, 1, 1 ]
+                    geometry: 
+                      type: Cylinder
+                      radius: 0.2
+                      height: 0.1
+          - 
+            type: Transform
+            translation: [ 0, 0, 0.14 ]
+            elements: 
+              - 
+                type: Transform
+                rotation: [ 1, 0, 0, 90 ]
+                elements: 
+                  - 
+                    type: Shape
+                    appearance: 
+                      material: 
+                        diffuse: [ 0, 1, 1 ]
+                    geometry: 
+                      type: Cylinder
+                      radius: 0.18
+                      height: 0.02
+          - 
+            type: Transform
+            translation: [ 0.11, 0.11, 0.09 ]
+            elements: 
+              - 
+                type: Transform
+                rotation: [ 1, 0, 0, 90 ]
+                elements: 
+                  - 
+                    type: Shape
+                    appearance: 
+                      material: 
+                        diffuse: [ 0, 1, 1 ]
+                    geometry: 
+                      type: Cylinder
+                      radius: 0.01
+                      height: 0.08
+          - 
+            type: Transform
+            translation: [ -0.11, 0.11, 0.09 ]
+            elements: 
+              - 
+                type: Transform
+                rotation: [ 1, 0, 0, 90 ]
+                elements: 
+                  - 
+                    type: Shape
+                    appearance: 
+                      material: 
+                        diffuse: [ 0, 1, 1 ]
+                    geometry: 
+                      type: Cylinder
+                      radius: 0.01
+                      height: 0.08
+          - 
+            type: Transform
+            translation: [ 0.11, -0.11, 0.09 ]
+            elements: 
+              - 
+                type: Transform
+                rotation: [ 1, 0, 0, 90 ]
+                elements: 
+                  - 
+                    type: Shape
+                    appearance: 
+                      material: 
+                        diffuse: [ 0, 1, 1 ]
+                    geometry: 
+                      type: Cylinder
+                      radius: 0.01
+                      height: 0.08
+          - 
+            type: Transform
+            translation: [ -0.11, -0.11, 0.09 ]
+            elements: 
+              - 
+                type: Transform
+                rotation: [ 1, 0, 0, 90 ]
+                elements: 
+                  - 
+                    type: Shape
+                    appearance: 
+                      material: 
+                        diffuse: [ 0, 1, 1 ]
+                    geometry: 
+                      type: Cylinder
+                      radius: 0.01
+                      height: 0.08
+          - 
+            type: Transform
+            translation: [ 0.18, 0, 0.055 ]
+            elements: 
+              - 
+                type: Transform
+                rotation: [ 1, 0, 0, 90 ]
+                elements: 
+                  - 
+                    type: Shape
+                    appearance: 
+                      material: 
+                        diffuse: [ 0, 1, 0 ]
+                    geometry: 
+                      type: Cylinder
+                      radius: 0.02
+                      height: 0.01
+      - 
+        type: Collision
+        elements: 
+          - 
+            type: Transform
+            elements: 
+              - 
+                type: Transform
+                rotation: [ 1, 0, 0, 90 ]
+                elements: 
+                  - 
+                    type: Shape
+                    geometry: 
+                      type: Cylinder
+                      radius: 0.2
+                      height: 0.1
+    parent: base_link
+    translation: [ 0, 0, 0.05 ]
+    joint_name: fixed_base_link_to_main
+    joint_type: fixed
+    mass: 1
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [ 
+      0.1, 0, 0, 
+      0, 0.1, 0, 
+      0, 0, 0.1 ]
+  - 
+    name: "base_laser_link"
+    parent: main
+    translation: [ 0.2, 0, 0.15 ]
+    joint_name: fixed_main_to_baselaser_link
+    joint_type: fixed
+    mass: 0.001
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [ 
+      1e-09, 0, 0, 
+      0, 1e-09, 0, 
+      0, 0, 1e-09 ]

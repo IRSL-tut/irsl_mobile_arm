@@ -1,0 +1,46 @@
+robot_model:
+  name: base_arm
+  url: 'package://simple_move/model/base_arm.body'
+
+joint_groups:
+  -
+    name: default
+    topic: /arm_controller/follow_joint_trajectory
+    type: action
+    joint_names:
+      - BASE_Y
+      - BASE_R
+      - BASE_P
+      - ELBOW_P
+      - ELBOW_Y
+      - WRIST_P
+      - WRIST_Y
+  -
+    name: gripper
+    topic: /gripper_controller/follow_joint_trajectory
+    type: action
+    joint_names:
+      - GRIPPER0
+      - GRIPPER1
+
+mobile_base:
+  type: geometry_msgs/Twist
+  topic: /cmd_vel
+  baselink: Root
+  base_frame: base_link
+  ##
+  map_frame: map
+  move_base_action: move_base
+  ##
+  odom_frame: odom
+  odom_trajectory_action: omni_base_controller/follow_joint_trajectory
+
+devices:
+  -
+    topic: /joint_states
+    class: JointState
+    name: joint_state
+  -
+    topic: /joint_controller/state
+    class: JointTrajectoryState
+    name: joint_trajectory_state

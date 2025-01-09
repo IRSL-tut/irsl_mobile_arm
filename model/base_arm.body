@@ -1,0 +1,19 @@
+format: ChoreonoidBody
+formatVersion: 1.0
+angleUnit: degree
+name: base_arm
+rootLink: base_link
+
+links:
+  -
+    type: SubBody
+    uri: simple_move.body
+    jointIdOffset: 0
+  -
+    type: SubBody
+    uri: arm.body
+    parent: base_link
+    translation: [ 0.0, 0.0, 0.2 ]
+    #rotation: [ 0, 0, 1, 90 ]
+    jointType: fixed
+    jointIdOffset: 0

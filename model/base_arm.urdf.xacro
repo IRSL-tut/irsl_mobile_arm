@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="base_arm" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="simple_move.urdf" />
+  <link name="anchor_arm_base"/>
+  <joint name="make_anchor" type="fixed">
+    <parent link="base_link"/>
+    <child  link="anchor_arm_base"/>
+    <origin xyz="0.0 0.0 0.2" rpy="0 0 0"/>
+  </joint>
+
+  <xacro:include filename="arm.urdf" />
+  <joint name="connect_arm" type="fixed">
+    <parent link="anchor_arm_base"/>
+    <child  link="arm_base"/>
+  </joint>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+</robot>

@@ -12,7 +12,10 @@
   <arg name="use_dummy_odom" default="false" />
   <arg name="making_map"     default="false" />
   <arg name="rviz"           default="true" />
-
+  <arg name="use_arm"        default="false" />
+  <arg name="control_namespace" default="/" />
+  <arg name="control_config"    default="$(find simple_move)/config/roscontrol_config.yaml" />
+  <arg name="controllers"       default="joint_state_controller arm_controller gripper_controller" />
   <env name="GAZEBO_MODEL_PATH" value="$(find simple_move)/gazebo_models" />
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
@@ -25,22 +28,46 @@
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="debug"        value="$(arg debug)" />
   </include>
-
+  <!-- -->
+  <group unless="$(arg use_arm)">
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-         textfile="$(find simple_move)/simple_move.urdf"
+         textfile="$(find simple_move)/model/simple_move.urdf"
          unless="$(arg use_dummy_odom)" />
   <param name="robot_description"
-         textfile="$(find simple_move)/simple_move.dummy_odom.urdf"
+         textfile="$(find simple_move)/model/simple_move.dummy_odom.urdf"
          if="$(arg use_dummy_odom)" />
-
-  <node name="simple_move_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
         respawn="false" output="screen"
-        args="-urdf -model simple_movee -param robot_description"
+        args="-urdf -model simple_move -param robot_description"
         if="$(arg run_gazebo)" />
+  </group>
+  <!-- -->
+  <group if="$(arg use_arm)">
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="robot_description"
+         textfile="$(find simple_move)/model/base_arm.urdf"
+         unless="$(arg use_dummy_odom)" />
+  <param name="robot_description"
+         textfile="$(find simple_move)/model/simple_move.dummy_odom.urdf"
+         if="$(arg use_dummy_odom)" />
+  <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        respawn="false" output="screen"
+        args="-urdf -model base_arm -param robot_description"
+        if="$(arg run_gazebo)" />
+  <!-- ROS Control -->
+  <group ns="$(arg control_namespace)">
+    <rosparam file="$(arg control_config)" command="load"/>
+    <!-- load the controllers -->
+    <node name="robot_controller_spawner" pkg="controller_manager"
+          type="spawner" output="screen" respawn="true"
+          args="$(arg controllers)"/>
+  </group>
+  </group>
+
+  <node name="simple_move_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
   <group if="$(arg use_dummy_odom)">
     <node name="dummy_odom_publisher" pkg="simple_move" type="dummy_odom_node.py"/>
