@@ -607,7 +607,7 @@
 		</visual>
 		<visual>
 			<geometry>
-				<mesh filename="package://simple_move/model/BodyBuilder_GRIPPER0_lk.dae" />
+				<mesh filename="package://irsl_mobile_arm/model/BodyBuilder_GRIPPER0_lk.dae" />
 			</geometry>
 		</visual>
 		<collision>
@@ -621,7 +621,7 @@
 		</collision>
 		<collision>
 			<geometry>
-				<mesh filename="package://simple_move/model/BodyBuilder_GRIPPER0_lk.stl" />
+				<mesh filename="package://irsl_mobile_arm/model/BodyBuilder_GRIPPER0_lk.stl" />
 			</geometry>
 		</collision>
 		<inertial>
@@ -650,7 +650,7 @@
 		</visual>
 		<visual>
 			<geometry>
-				<mesh filename="package://simple_move/model/BodyBuilder_GRIPPER1_lk.dae" />
+				<mesh filename="package://irsl_mobile_arm/model/BodyBuilder_GRIPPER1_lk.dae" />
 			</geometry>
 		</visual>
 		<collision>
@@ -664,7 +664,7 @@
 		</collision>
 		<collision>
 			<geometry>
-				<mesh filename="package://simple_move/model/BodyBuilder_GRIPPER1_lk.stl" />
+				<mesh filename="package://irsl_mobile_arm/model/BodyBuilder_GRIPPER1_lk.stl" />
 			</geometry>
 		</collision>
 		<inertial>

@@ -1,6 +1,6 @@
 robot_model:
   name: base_arm
-  url: 'package://simple_move/model/base_arm.body'
+  url: 'package://irsl_mobile_arm/model/base_arm.body'
 
 joint_groups:
   -

@@ -3,19 +3,19 @@
     <arg name="use_joy"         default="false" />
     <arg name="use_usbcam"         default="true" />
     
-    <include file="$(find simple_move)/launch/run_base.launch">
+    <include file="$(find irsl_mobile_arm)/launch/run_base.launch">
         <arg name="run_gazebo"  value="false"/>
         <arg name="making_map"  value="$(arg making_map)"/>
         <arg name="use_dummy_odom"  value="true"/>
     </include>
 
-    <include file="$(find simple_move)/launch/urg_node.launch">
+    <include file="$(find irsl_mobile_arm)/launch/urg_node.launch">
     </include>
 
     <node name="sub_twist_node" pkg="com_serial" type="sub_twist_node.py" />
 
     <group if="$(arg use_joy)">
-        <include file="$(find simple_move)/launch/joy.launch" >
+        <include file="$(find irsl_mobile_arm)/launch/joy.launch" >
         </include>
     </group>
 

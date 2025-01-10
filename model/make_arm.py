@@ -87,7 +87,7 @@ def rename(builder_inst, prefix='', suffix=''):
 
 rename(rtb, suffix='_lk')
 rtb.exportBody('arm.body')
-rtb.exportURDF('arm.urdf', MeshURLPrefix='package://simple_move/model/', useXacro=True)
+rtb.exportURDF('arm.urdf', MeshURLPrefix='package://irsl_mobile_arm/model/', useXacro=True)
 
 ###
 def _fixMassparam(lk):

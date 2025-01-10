@@ -5,7 +5,7 @@
   <arg name="GUI"      default="true"/>
   <arg name="HEADLESS" default="false"/>
   <arg name="PAUSED"   default="false"/>
-  <arg name="WORLD_FILE" default="$(find simple_move)/world/aero_shelf.world"/>
+  <arg name="WORLD_FILE" default="$(find irsl_mobile_arm)/world/aero_shelf.world"/>
   <arg name="run_gazebo"     default="false" />
   <arg name="use_sim_time"   default="true"/>
   <arg name="debug"          default="false"/>
@@ -14,9 +14,9 @@
   <arg name="rviz"           default="true" />
   <arg name="use_arm"        default="false" />
   <arg name="control_namespace" default="/" />
-  <arg name="control_config"    default="$(find simple_move)/config/roscontrol_config.yaml" />
+  <arg name="control_config"    default="$(find irsl_mobile_arm)/config/roscontrol_config.yaml" />
   <arg name="controllers"       default="joint_state_controller arm_controller gripper_controller" />
-  <env name="GAZEBO_MODEL_PATH" value="$(find simple_move)/gazebo_models" />
+  <env name="GAZEBO_MODEL_PATH" value="$(find irsl_mobile_arm)/gazebo_models" />
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch"
@@ -32,10 +32,10 @@
   <group unless="$(arg use_arm)">
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-         textfile="$(find simple_move)/model/simple_move.urdf"
+         textfile="$(find irsl_mobile_arm)/model/simple_move.urdf"
          unless="$(arg use_dummy_odom)" />
   <param name="robot_description"
-         textfile="$(find simple_move)/model/simple_move.dummy_odom.urdf"
+         textfile="$(find irsl_mobile_arm)/model/simple_move.dummy_odom.urdf"
          if="$(arg use_dummy_odom)" />
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
@@ -47,10 +47,10 @@
   <group if="$(arg use_arm)">
   <!-- Load the URDF into the ROS Parameter Server -->
   <param name="robot_description"
-         textfile="$(find simple_move)/model/base_arm.urdf"
+         textfile="$(find irsl_mobile_arm)/model/base_arm.urdf"
          unless="$(arg use_dummy_odom)" />
   <param name="robot_description"
-         textfile="$(find simple_move)/model/simple_move.dummy_odom.urdf"
+         textfile="$(find irsl_mobile_arm)/model/simple_move.dummy_odom.urdf"
          if="$(arg use_dummy_odom)" />
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
@@ -74,17 +74,17 @@
     <node name="omni_base_controller" pkg="simple_move" type="odom_trajectory_to_twist_server.py"/>
   </group>
 
-  <include file="$(find simple_move)/launch/static_map_navigation.launch"
+  <include file="$(find irsl_mobile_arm)/launch/static_map_navigation.launch"
            unless="$(arg making_map)">
-    <arg name="map_file" value="$(find simple_move)/map/map.yaml" />
+    <arg name="map_file" value="$(find irsl_mobile_arm)/map/map.yaml" />
   </include>
 
   <group if="$(arg making_map)" >
-    <include file="$(find simple_move)/launch/gmapping.launch" />
-    <include file="$(find simple_move)/launch/move_base.launch" />
+    <include file="$(find irsl_mobile_arm)/launch/gmapping.launch" />
+    <include file="$(find irsl_mobile_arm)/launch/move_base.launch" />
   </group>
 
   <node name="rviz" pkg="rviz" type="rviz"
-        args="-d $(find simple_move)/simple_move.rviz"
+        args="-d $(find irsl_mobile_arm)/simple_move.rviz"
         if="$(arg rviz)" />
 </launch>
