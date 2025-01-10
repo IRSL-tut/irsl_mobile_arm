@@ -5,4 +5,19 @@
   <description>sample</description>
   <maintainer email="faculty@irsl.eiiris.tut.ac.jp"> IRSL at Toyohashi Tech </maintainer>
   <license>MIT</license>
+  <!-- -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- -->
+  <exec_depend>gazebo_plugins</exec_depend>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>amcl</exec_depend>
+  <exec_depend>map_server</exec_depend>
+  <exec_depend>dwa_local_planner</exec_depend>
+  <exec_depend>neo_local_planner</exec_depend>
+  <exec_depend>dwb_local_planner</exec_depend>
+  <exec_depend>teb_local_planner</exec_depend>
+  <exec_depend>global_planner</exec_depend>
+  <exec_depend>slam_gmapping</exec_depend>
+  <exec_depend>teleop_twist_joy</exec_depend>
+  <exec_depend>teleop_twist_keyboard</exec_depend>
 </package>

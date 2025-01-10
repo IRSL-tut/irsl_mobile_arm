@@ -1,13 +1,13 @@
 # Simple move
 
-Simple move_base sample
+Simple mobile base and arm sample
 
 ## 実行方法
 
 export ROS_PACKAGE_PATH=$(pwd)/..:$ROS_PACKAGE_PATH
 
 ```bash
-roslaunch simple_move run_base.launch run_gazebo:=true ## gazeboのlaunch
+roslaunch irsl_mobile_arm run_base.launch run_gazebo:=true ## gazeboのlaunch
 rosrun rviz rviz -d simple_move.rviz ##
 ```
 
@@ -19,7 +19,7 @@ rosrun rviz rviz -d simple_move.rviz ##
 twistを積算するダミーのオドメトリを使用する
 
 ```
-roslaunch simple_move run_base.launch run_gazebo:=true use_dummy_odom:=true ## gazeboのlaunch, ダミーのオドメトリ
+roslaunch irsl_mobile_arm run_base.launch run_gazebo:=true use_dummy_odom:=true ## gazeboのlaunch, ダミーのオドメトリ
 ```
 
 ### Making map
@@ -27,7 +27,7 @@ roslaunch simple_move run_base.launch run_gazebo:=true use_dummy_odom:=true ## g
 マップを作る
 
 ```
-roslaunch simple_move run_base.launch run_gazebo:=true making_map:=true ## gazeboのlaunch, マップを作る
+roslaunch irsl_mobile_arm run_base.launch run_gazebo:=true making_map:=true ## gazeboのlaunch, マップを作る
 ```
 
 cmd_velを出力するもの(twist_joyやtwist_keyboard)でロボットを動かす。
@@ -43,11 +43,11 @@ rosrun map_server map_saver -f map
 
 - ターミナル1
     ```
-    roslaunch simple_mode urg_node.launch
+    roslaunch irsl_mobile_arm urg_node.launch
     ```
 - ターミナル2
     ```
-    roslaunch simple_move run_base.launch run_gazebo:=false making_map:=true use_dummy_odom:=true
+    roslaunch irsl_mobile_arm run_base.launch run_gazebo:=false making_map:=true use_dummy_odom:=true
     ```
 
 ## インストールが必要なもの
