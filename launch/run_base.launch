@@ -85,6 +85,6 @@
   </group>
 
   <node name="rviz" pkg="rviz" type="rviz"
-        args="-d $(find irsl_mobile_arm)/simple_move.rviz"
+        args="-d $(find irsl_mobile_arm)/config/simple_move.rviz"
         if="$(arg rviz)" />
 </launch>
