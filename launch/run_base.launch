@@ -87,4 +87,6 @@
   <node name="rviz" pkg="rviz" type="rviz"
         args="-d $(find irsl_mobile_arm)/config/simple_move.rviz"
         if="$(arg rviz)" />
+
+  <include file="$(find irsl_mobile_arm)/launch/teleop_webjoy.launch" />
 </launch>

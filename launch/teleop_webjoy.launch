@@ -1,0 +1,8 @@
+<launch>
+  <arg name="config_filepath" default="$(find irsl_mobile_arm)/config/teleop_webjoy.config.yaml" />
+
+  <node pkg="teleop_twist_joy" name="teleop_twist_joy" type="teleop_node">
+    <remap from="joy" to="/webjoy" />
+    <rosparam command="load" file="$(arg config_filepath)" />
+  </node>
+</launch>
