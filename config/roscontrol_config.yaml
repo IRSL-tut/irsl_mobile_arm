@@ -15,23 +15,23 @@ joint_controller:
     - GRIPPER1
   gains:
     BASE_Y:
-      p: 40.0
+      p: 160.0
       i: 0.0
       d: 4.0
     BASE_R:
-      p: 40.0
+      p: 160.0
       i: 0.0
       d: 4.0
     BASE_P:
-      p: 40.0
+      p: 160.0
       i: 0.0
       d: 4.0
     ELBOW_P:
-      p: 40.0
+      p: 160.0
       i: 0.0
       d: 4.0
     ELBOW_Y:
-      p: 40.0
+      p: 160.0
       i: 0.0
       d: 4.0
     WRIST_P:
@@ -62,33 +62,33 @@ arm_controller:
     - WRIST_Y
   gains:
     BASE_Y:
-      p: 40.0
+      p: 120.0
       i: 0.0
-      d: 4.0
+      d: 8.0
     BASE_R:
-      p: 40.0
+      p: 240.0
       i: 0.0
-      d: 4.0
+      d: 8.0
     BASE_P:
-      p: 40.0
+      p: 240.0
       i: 0.0
-      d: 4.0
+      d: 8.0
     ELBOW_P:
-      p: 40.0
+      p: 240.0
       i: 0.0
-      d: 4.0
+      d: 8.0
     ELBOW_Y:
-      p: 40.0
+      p: 80.0
       i: 0.0
-      d: 4.0
+      d: 8.0
     WRIST_P:
-      p: 40.0
+      p: 160.0
       i: 0.0
-      d: 4.0
+      d: 8.0
     WRIST_Y:
-      p: 40.0
+      p: 80.0
       i: 0.0
-      d: 4.0
+      d: 8.0
 gripper_controller:
   type: "effort_controllers/JointTrajectoryController"
   joints:
