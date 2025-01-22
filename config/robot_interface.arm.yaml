@@ -1,7 +1,8 @@
 robot_model:
   name: base_arm
-  url: 'package://irsl_mobile_arm/model/base_arm.body'
-
+  #url: 'package://irsl_mobile_arm/model/base_arm.py'
+  class: BaseArm
+  import: 'package://irsl_mobile_arm/model/base_arm.py'
 joint_groups:
   -
     name: default
@@ -41,6 +42,6 @@ devices:
     class: JointState
     name: joint_state
   -
-    topic: /joint_controller/state
+    topic: /arm_controller/state
     class: JointTrajectoryState
     name: joint_trajectory_state
