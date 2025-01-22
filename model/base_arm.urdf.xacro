@@ -20,4 +20,30 @@
       <robotNamespace>/</robotNamespace>
     </plugin>
   </gazebo>
+
+  <xacro:include filename="gazebo_plugins.xacro" />
+  <link name="base_camera_link" />
+  <joint name="fixed_main_to_base_camera_link" type="fixed">
+    <parent link="main"/>
+    <child link="base_camera_link"/>
+    <origin rpy="0 0 0" xyz="0.2 0.0 0.15"/>
+  </joint>
+  <link name="arm_camera_link" />
+  <joint name="fixed_main_to_arm_camera_link" type="fixed">
+    <parent link="ELBOW_Y_lk"/>
+    <child  link="arm_camera_link"/>
+    <origin xyz="-0.1 0.12 0" rpy="-1.5707963267948966 0 1.5707963267948966"/>
+  </joint>
+  <link name="hand_camera_link" />
+  <joint name="fixed_main_to_hand_camera_link" type="fixed">
+    <parent link="WRIST_Y_lk"/>
+    <child  link="hand_camera_link"/>
+    <origin xyz="-0.07 0.025 0" rpy="-1.5707963267948966 0 1.5707963267948966"/>
+  </joint>
+  <xacro:add_gazebo_camera camera_name="base_camera" frame="base_camera_frame" link_name="base_camera_link"
+                           rpy="-1.5707963267948966 0 -1.5707963267948966"/>
+  <xacro:add_gazebo_camera camera_name="arm_camera"  frame="arm_camera_frame"  link_name="arm_camera_link"
+                           rpy="-1.5707963267948966 0 -1.5707963267948966"/>
+  <xacro:add_gazebo_camera camera_name="hand_camera" frame="hand_camera_frame" link_name="hand_camera_link"
+                           rpy="-1.5707963267948966 0 -1.5707963267948966"/>
 </robot>
