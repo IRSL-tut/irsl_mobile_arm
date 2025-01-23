@@ -20,4 +20,12 @@
   <exec_depend>slam_gmapping</exec_depend>
   <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>teleop_twist_keyboard</exec_depend>
+  <exec_depend>image_transport</exec_depend>
+  <exec_depend>compressed_image_transport</exec_depend>
+  <exec_depend>theora_image_transport</exec_depend>
+  <exec_depend>image_transport_codecs</exec_depend>
+  <exec_depend>image_transport_plugins</exec_depend>
+  <exec_depend>compressed_depth_image_transport</exec_depend>
+  <!-- -->
+  <exec_depend>rosbridge_server</exec_depend>
 </package>
