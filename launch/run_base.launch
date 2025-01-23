@@ -93,7 +93,7 @@
 
   <include file="$(find irsl_mobile_arm)/launch/teleop_webjoy.launch" />
 
-  <include file="$(find rosbridge_server)/rosbridge_websocket.launch"
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"
            if="$(arg use_rosbridge)" >
     <arg name="address" value="$(arg wsaddr)" />
     <arg name="port" value="$(arg wsport)" />
