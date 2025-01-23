@@ -1,0 +1,61 @@
+version: "3.0"
+### Environment Variables ###
+# USER_DIR=~/docker_userdir
+# DOCKER_USER  = 0
+# DOCKER_GROUP = 0
+# VNC_PORT     = 9999 ## port of browser_vnc
+# JUPYTER_PORT = 8888 ## port of jupyter
+# JUPYTER_TOKEN = ''  ## token (password) to login jupyter
+# DOCKER_DISPLAY = 10
+# VGL_DISPLAY    = :0
+# REPO      = irslrepo/
+# ARG_IMAGE = irsl_system:noetic
+# NETWORK_MODE = bridge
+# ARG_ROS_IP   = localhost
+# ARG_ROS_MSATER_URI = http://localhost:11311
+# DOCKER_ROS_SETUP   = /choreonoid_ws/install/setup.bash
+###
+services:
+  xserver:
+    image: ${REPO:-irslrepo/}browser_vnc:20.04
+    # ipc: host
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "${VNC_PORT:-9999}:80"
+    command: [ supervisord, -c, /app/supervisord.conf ]
+    environment:
+      - DISPLAY=:${DOCKER_DISPLAY:-10}
+    healthcheck:
+      test: ["CMD-SHELL", "test -e /tmp/.X11-unix/X${DOCKER_DISPLAY:-10}"]
+      interval: "2s"
+      retries: 20
+    volumes:
+      - '/tmp/.X11-unix:/tmp/.X11-unix'
+  main:
+    image: ${REPO:-irslrepo/}${ARG_IMAGE:-irsl_mobile_arm:noetic}
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "${JUPYTER_PORT:-8888}:8888"
+      - "9909:9909"
+    command: [ "jupyter", "lab", "--allow-root", "--no-browser", "--ip=0.0.0.0", "--port=8888", "--ServerApp.token='${JUPYTER_TOKEN}'", "--FileCheckpoints.checkpoint_dir=/tmp" ]
+    environment:
+      - DISPLAY=:${DOCKER_DISPLAY:-10}
+      - VGL_DISPLAY=${VGL_DISPLAY-:0}
+      - DOCKER_ROS_SETUP=${DOCKER_ROS_SETUP:-/irsl_ws/devel/setup.bash}
+      - ROS_IP=${ARG_ROS_IP:-0.0.0.0}
+      - ROS_MASTER_URI=${ARG_ROS_MASTER_URI:-http://localhost:11311}
+    working_dir: /userdir
+    user: "${DOCKER_USER:-0}:${DOCKER_GROUP:-0}"
+    volumes:
+      - '${USER_DIR:-~/docker_userdir}:/userdir'
+      - '/tmp/.X11-unix:/tmp/.X11-unix'
+    depends_on:
+      - xserver
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu, compute, graphics, utility, display]
+    network_mode: ${NETWORK_MODE:-host}

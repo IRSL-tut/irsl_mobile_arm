@@ -24,6 +24,7 @@ rosrun rviz rviz -d simple_move.rviz ##
 - いい感じのところに 2D pose estimate (rviz上)
 - 適度なところへ goal を設定 (rviz上)
 
+
 ### ダミーのオドメトリの出力 / Dummy odometry
 
 twistを積算するダミーのオドメトリを使用する
@@ -31,6 +32,7 @@ twistを積算するダミーのオドメトリを使用する
 ```bash
 roslaunch irsl_mobile_arm run_base.launch run_gazebo:=true use_dummy_odom:=true ## gazeboのlaunch, ダミーのオドメトリ
 ```
+
 
 ### Making map
 
@@ -48,6 +50,7 @@ cmd_velを出力するもの(twist_joyやtwist_keyboard)でロボットを動か
 rosrun map_server map_saver -f map
 ```
 
+
 ### Real Robot
 
 マップを作る
@@ -60,6 +63,7 @@ rosrun map_server map_saver -f map
     ```bash
     roslaunch irsl_mobile_arm run_base.launch run_gazebo:=false making_map:=true use_dummy_odom:=true
     ```
+
 
 ### URDF
 

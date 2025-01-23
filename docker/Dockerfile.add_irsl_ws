@@ -1,0 +1,17 @@
+ARG BASE_IMAGE=irslrepo/irsl_system:noetic
+## docker build . -f Dockerfile.add_irsl_ws -t irslrepo/irsl_mobile_arm:noetic
+FROM ${BASE_IMAGE}
+
+WORKDIR /irsl_ws
+
+RUN mkdir src
+
+RUN ( cd src; git clone https://github.com/IRSL-tut/irsl_mobile_arm )
+
+RUN apt-get update -q -qq && \
+    rosdep update && \
+    rosdep install -y -r --ignore-src --from-path src && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/
+
+RUN source /choreonoid_ws/install/setup.bash; catkin build
