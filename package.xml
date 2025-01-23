@@ -9,6 +9,12 @@
   <buildtool_depend>catkin</buildtool_depend>
   <!-- -->
   <exec_depend>gazebo_plugins</exec_depend>
+  <exec_depend>gazebo_ros_control</exec_depend>
+  <!-- -->
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>ros_controllers</exec_depend>
+  <exec_depend>scaled_joint_trajectory_controller</exec_depend>
+  <!-- -->
   <exec_depend>move_base</exec_depend>
   <exec_depend>amcl</exec_depend>
   <exec_depend>map_server</exec_depend>
@@ -18,8 +24,10 @@
   <exec_depend>teb_local_planner</exec_depend>
   <exec_depend>global_planner</exec_depend>
   <exec_depend>slam_gmapping</exec_depend>
+  <!-- -->
   <exec_depend>teleop_twist_joy</exec_depend>
   <exec_depend>teleop_twist_keyboard</exec_depend>
+  <!-- -->
   <exec_depend>image_transport</exec_depend>
   <exec_depend>compressed_image_transport</exec_depend>
   <exec_depend>theora_image_transport</exec_depend>
