@@ -16,6 +16,7 @@ catkin build
 source /irsl_ws/devel/setup.bash
 ```
 
+### ロボットベースのみ
 ```bash
 roslaunch irsl_mobile_arm run_base.launch run_gazebo:=true ## gazeboのlaunch
 rosrun rviz rviz -d simple_move.rviz ##
@@ -24,6 +25,18 @@ rosrun rviz rviz -d simple_move.rviz ##
 - いい感じのところに 2D pose estimate (rviz上)
 - 適度なところへ goal を設定 (rviz上)
 
+### アーム付きベース
+```bash
+roslaunch irsl_mobile_arm run_base.launch run_gazebo:=true use_arm:=true
+```
+
+### ros_bridgeを使う
+```bash
+roslaunch irsl_mobile_arm run_base.launch run_gazebo:=true use_arm:=true use_rosbridge:=true
+```
+
+- webページにアクセス
+https://localhost/base_arm/img_joy.html?wsport=9909&wsaddr=localhost&ssl=1
 
 ### ダミーのオドメトリの出力 / Dummy odometry
 
