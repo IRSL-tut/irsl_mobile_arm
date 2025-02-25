@@ -10,6 +10,7 @@
   <arg name="use_sim_time"   default="true"/>
   <arg name="debug"          default="false"/>
   <arg name="use_dummy_odom" default="false" />
+  <arg name="use_odom_trajectory" default="true" />
   <arg name="making_map"     default="false" />
   <arg name="rviz"           default="true" />
   <arg name="use_arm"        default="false" />
@@ -73,8 +74,10 @@
   <node name="simple_move_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
   <group if="$(arg use_dummy_odom)">
-    <node name="dummy_odom_publisher" pkg="simple_move" type="dummy_odom_node.py"/>
-    <node name="omni_base_controller" pkg="simple_move" type="odom_trajectory_to_twist_server.py"/>
+    <node name="dummy_odom_publisher" pkg="irsl_mobile_arm" type="dummy_odom_node.py"/>
+  </group>
+  <group if="$(arg use_odom_trajectory)">
+    <node name="omni_base_controller" pkg="irsl_mobile_arm" type="odom_trajectory_to_twist_server.py"/>
   </group>
 
   <include file="$(find irsl_mobile_arm)/launch/static_map_navigation.launch"
