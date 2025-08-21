@@ -9,8 +9,9 @@ RUN mkdir src
 RUN ( cd src; git clone https://github.com/IRSL-tut/irsl_mobile_arm )
 
 RUN apt-get update -q -qq && \
-    rosdep update && \
-    rosdep install -y -r --ignore-src --from-path src && \
+    apt-get dist-upgrade -y -q -qq && \
+    rosdep update --rosdistro=${ROS_DISTRO} && \
+    rosdep install --rosdistro=${ROS_DISTRO} -y -r --ignore-src --from-path src && \
     apt clean && \
     rm -rf /var/lib/apt/lists/
 
